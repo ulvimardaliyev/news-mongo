@@ -36,8 +36,8 @@ public class NewsResource {
     }
 
     @GetMapping
-    public ResponseEntity<List<NewsResponseDto>> get(@RequestHeader(defaultValue = "0") Integer offset,
-                                                     @RequestHeader(defaultValue = "10") Integer limit) {
+    public ResponseEntity<List<NewsResponseDto>> get(@RequestParam(defaultValue = "0") Integer offset,
+                                                     @RequestParam(defaultValue = "10") Integer limit) {
         return ResponseEntity.ok(
                         newsService.getNewsByOffsetAndLimit(offset,limit)
 
