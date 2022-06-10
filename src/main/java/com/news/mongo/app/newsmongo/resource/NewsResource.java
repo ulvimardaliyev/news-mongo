@@ -39,18 +39,20 @@ public class NewsResource {
     public ResponseEntity<List<NewsResponseDto>> get(@RequestParam(defaultValue = "0") Integer offset,
                                                      @RequestParam(defaultValue = "10") Integer limit) {
         return ResponseEntity.ok(
-                        newsService.getNewsByOffsetAndLimit(offset,limit)
+                newsService.getNewsByOffsetAndLimit(offset, limit)
 
         );
     }
+
     @DeleteMapping("/{newsId}")
     public ResponseEntity<NewsResponseDto> delete(@PathVariable Long newsId) {
         return ResponseEntity.ok(newsService.deleteNewsById(newsId));
     }
 
     @PatchMapping("/{newsId}")
-    public ResponseEntity<NewsResponseDto> delete(@PathVariable Long newsId, MultipartFile picture,
-                                                                 NewsUpdateDto newsUpdateDto) {
-        return ResponseEntity.ok((newsService.updateNews(newsId, picture,  newsUpdateDto)));
+    public ResponseEntity<NewsResponseDto> delete(@PathVariable Long newsId,
+                                                  MultipartFile picture,
+                                                  @RequestBody NewsUpdateDto newsUpdateDto) {
+        return ResponseEntity.ok((newsService.updateNews(newsId, picture, newsUpdateDto)));
     }
 }
